@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class UsuarioForm extends JPanel {
+	static final long serialVersionUID = 1L;
 	private JTextField txtUsuario;
 	private JTextField txtNombre;
 	private JTextField textApellido;
