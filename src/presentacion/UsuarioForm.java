@@ -8,7 +8,11 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JPasswordField;
-
+import negocio.AdministradorBO;
+import negocio.ComunBO;
+import negocio.ExpertoBO;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,6 +35,7 @@ public class UsuarioForm extends JPanel {
 	private JButton btnGuardado;
 	private JLabel lblTipoDeUsuario;
 	private JComboBox<String> boxTipoUsuario;
+	private AdministradorBO administrador = new AdministradorBO();
 
 	/**
 	 * Create the panel.
@@ -72,6 +77,21 @@ public class UsuarioForm extends JPanel {
 		boxTipoUsuario.addItem("Comun");
 		boxTipoUsuario.addItem("Administrador");
 		boxTipoUsuario.addItem("Experto");
+		String seleccion = boxTipoUsuario.getToolTipText();
+		ActionListener tipoSeleccionado = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				if (seleccion=="Administrador"){
+					textInstituto.setVisible(true);
+					txtCedula.setVisible(true);
+					txtProfesion.setVisible(false);
+				} else if(seleccion=="Experto"){
+					txtCedula.setVisible(true);
+					txtProfesion.setVisible(true);
+					textInstituto.setVisible(false);
+				}
+			}
+		};
+		boxTipoUsuario.addActionListener(tipoSeleccionado);
 		add(boxTipoUsuario, "4, 2, left, default");
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
@@ -134,6 +154,13 @@ public class UsuarioForm extends JPanel {
 		textInstituto.setColumns(10);
 		
 		btnGuardado = new JButton("Guardado");
+		ActionListener guardarUsuario = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				if (seleccion=="Administrador")
+			}
+		};
+		
+		btnGuardado.addActionListener(guardarUsuario);
 		add(btnGuardado, "4, 20");
 
 	}
